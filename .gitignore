@@ -2,10 +2,11 @@
 .cache
 node_modules
 
+.env.*
 
 # Build directory
 /public
 .DS_Store
 
-#IDE 
+#IDE
 .vscode

@@ -1,4 +1,4 @@
-# gatsby-typescript-boilerplate
+# gatsby-drupal-tnt (TopNotchTemplate)
 
 Opinionated [Gatsby](https://www.gatsbyjs.org/) boilerplate.
 

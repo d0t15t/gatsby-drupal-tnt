@@ -1,0 +1,16 @@
+.icon {
+  width: 100px;
+  height: 100px;
+  fill: orange;
+  transform-origin: center center;
+  animation: spin 1.5s linear infinite;
+}
+
+.spinner {
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

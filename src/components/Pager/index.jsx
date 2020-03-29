@@ -2,31 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import fetch from 'node-fetch';
 import { useQueryParams, NumberParam } from 'use-query-params';
-import { navigate } from '@reach/router';
+import PropTypes from 'prop-types';
 
 const Pager = props => {
-  const [query, setQuery] = useQueryParams({
-    p: NumberParam
-  });
-  const { p } = query;
   const { amount, route } = props;
-  // const [currentPage, updateCurrentPage] = useState(p || 1);
-  // const [totalItems, updateTotalItems] = useState(0);
-  // const [pageCount, updatePageCount] = useState(0);
-  // const [offset, updateOffset] = useState(0);
-  // const [itemAmount, updateItemAmount] = useState(amount || 10)
+  const [query, setQuery] = useQueryParams({
+    p: NumberParam,
+    a: NumberParam,
+    o: NumberParam
+  });
+  const { p, a, o } = query;
   const [data, setData] = useState({
     total: 0,
     pageCount: 0,
     current: p || 1,
-    offset: 0,
-    amount: amount || 10
+    offset: o || 0,
+    amount: amount || a || 10
   });
-
-  const getPageCount = total => {
-    return Math.ceil(total / amount);
-  };
-
+  const getPageCount = total => Math.ceil(total / amount);
   useEffect(() => {
     try {
       const doFetch = async (url, options) => {
@@ -79,14 +72,13 @@ const Pager = props => {
           return false;
       }
     };
-    const handleClick = p => {
-      // console.log(params);
-      setQuery({ p });
+    const handleClick = newPage => {
+      setQuery({ p: newPage });
       setData({
         total: data.total,
         pageCount: getPageCount(data.total),
-        current: p,
-        offset: p * data.amount,
+        current: newPage,
+        offset: newPage * data.amount,
         amount: data.amount
       });
       // navigate(params);
@@ -110,5 +102,13 @@ const Pager = props => {
       <PagerLink step={1}>Next</PagerLink>
     </>
   );
+};
+Pager.propTypes = {
+  amount: PropTypes.number,
+  route: PropTypes.string.isRequired
+};
+
+Pager.defaultProps = {
+  amount: 10
 };
 export default Pager;

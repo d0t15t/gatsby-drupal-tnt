@@ -1,5 +1,5 @@
-import React from 'react';
 import { graphql } from 'gatsby';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import Layout from '../layout';
@@ -11,32 +11,30 @@ const page = props => {
   const getListItems = () => data.recipesList.edges;
   const list = getListItems();
   return (
-    <>
-      <Layout>
-        <h1>Recipes</h1>
-        <ul className="teaser-list">
-          {list.map(item => {
-            const node = { ...item.node };
-            const image = {
-              ...node.relationships.image.relationships.imageFile.localFile
-                .childImageSharp.fixed
-            };
-            const { path } = node.fields;
-            return (
-              <li key={uuidv4()}>
-                <Teaser
-                  key={node.id}
-                  title={node.title}
-                  image={image}
-                  path={path}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        <Pager pager={pageContext} />
-      </Layout>
-    </>
+    <Layout>
+      <h1>Recipes</h1>
+      <ul className="teaser-list">
+        {list.map(item => {
+          const node = { ...item.node };
+          const image = {
+            ...node.relationships.image.relationships.imageFile.localFile
+              .childImageSharp.fixed
+          };
+          const { path } = node.fields;
+          return (
+            <li key={uuidv4()}>
+              <Teaser
+                key={node.id}
+                title={node.title}
+                image={image}
+                path={path}
+              />
+            </li>
+          );
+        })}
+      </ul>
+      <Pager pager={pageContext} />
+    </Layout>
   );
 };
 
@@ -44,7 +42,9 @@ page.propTypes = {
   data: PropTypes.objectOf(PropTypes.any).isRequired,
   pageContext: PropTypes.objectOf(PropTypes.any).isRequired
 };
+
 export default page;
+
 export const query = graphql`
   query ArticleOverviewPageQuery($skip: Int!, $limit: Int!) {
     recipesList: allRecipes(

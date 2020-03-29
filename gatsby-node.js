@@ -22,6 +22,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `path`,
       value: `/${slug}`
     });
+    createNodeField({
+      node,
+      name: `type`,
+      value: type
+    });
   }
 };
 exports.createPages = async ({ graphql, actions }) => {
@@ -36,6 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 id
                 fields {
                   path
+                  type
                 }
               }
             }
@@ -48,13 +54,16 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       const articleTemplate = path.resolve(`./src/templates/recipe.jsx`);
       const edges = result.data.allRecipes.edges || [];
-      _.each(edges, edge => {
-        if (edge.node.type === 'recipes') {
+      _.each(edges, (edge, key) => {
+        if (edge.node.fields.type === 'recipes') {
           createPage({
             path: edge.node.fields.path,
             component: slash(articleTemplate),
             context: {
-              id: edge.node.id
+              id: edge.node.id,
+              prev: key > 0 ? edges[key - 1].node.fields.path : null,
+              next:
+                key < edges.length - 1 ? edges[key + 1].node.fields.path : null
             }
           });
         }

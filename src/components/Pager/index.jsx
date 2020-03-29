@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
-import fetch from 'node-fetch';
-import { useQueryParams, NumberParam } from 'use-query-params';
 import PropTypes from 'prop-types';
 
 const Pager = props => {
   const { pager } = props;
   const {
-    pageNumber,
+    // pageNumber,
     humanPageNumber,
-    skip,
-    limit,
+    // skip,
+    // limit,
     numberOfPages,
     previousPagePath,
     nextPagePath

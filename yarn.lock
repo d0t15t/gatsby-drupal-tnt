@@ -7402,6 +7402,13 @@ g-status@^2.0.2:
     matcher "^1.0.0"
     simple-git "^1.85.0"
 
+gatsby-awesome-pagination@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/gatsby-awesome-pagination/-/gatsby-awesome-pagination-0.3.5.tgz#e1d0d39a5350565e0e30af23979f76c89695a96a"
+  integrity sha512-rYBaGDgNtG6/+dHlM6XS2HtKodv/Y32AuysJMsZ39xIhn48UtRuYd8fmqJYc99V1dQFCPIJElNhg8fp1eOj05g==
+  dependencies:
+    lodash "^4.17.15"
+
 gatsby-cli@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.11.0.tgz#922ee3d0bb97c5a4465ed1d259b476a2dc688a5f"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
@@ -7,11 +7,9 @@ import Teaser from '../components/Teaser';
 import Pager from '../components/Pager';
 
 const page = props => {
-  const { data } = props;
-  const list = data.recipesList.edges;
-  const [pagerCurrent, updatePagerCurrent] = useState(0);
-  const pagerAmount = 10;
-
+  const { data, pageContext } = props;
+  const getListItems = () => data.recipesList.edges;
+  const list = getListItems();
   return (
     <>
       <Layout>
@@ -20,40 +18,38 @@ const page = props => {
           {list.map(item => {
             const node = { ...item.node };
             const image = {
-              ...item.node.relationships.image.relationships.imageFile.localFile
+              ...node.relationships.image.relationships.imageFile.localFile
                 .childImageSharp.fixed
             };
+            const { path } = node.fields;
             return (
               <li key={uuidv4()}>
                 <Teaser
-                  key={item.node.id}
+                  key={node.id}
                   title={node.title}
                   image={image}
-                  path={item.node.fields.path}
+                  path={path}
                 />
               </li>
             );
           })}
         </ul>
-        <Pager amount={pagerAmount} route="/recipes" />
+        <Pager pager={pageContext} />
       </Layout>
     </>
   );
 };
 
 page.propTypes = {
-  data: PropTypes.objectOf(PropTypes.any).isRequired
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+  pageContext: PropTypes.objectOf(PropTypes.any).isRequired
 };
-
-page.defaultProps = {
-  // data: null
-};
-
 export default page;
 export const query = graphql`
-  query ArticleOverviewPageQuery {
+  query ArticleOverviewPageQuery($skip: Int!, $limit: Int!) {
     recipesList: allRecipes(
-      limit: 7
+      skip: $skip
+      limit: $limit
       sort: { fields: [createdAt], order: DESC }
       filter: { isPublished: { eq: true } }
     ) {

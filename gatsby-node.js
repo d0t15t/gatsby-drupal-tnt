@@ -1,3 +1,5 @@
+const { paginate } = require('gatsby-awesome-pagination');
+
 const _ = require(`lodash`);
 const Promise = require(`bluebird`);
 const path = require(`path`);
@@ -22,8 +24,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     });
   }
 };
-exports.createPages = async ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
   return new Promise((resolve, reject) => {
     graphql(
       `
@@ -45,7 +47,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
         reject(result.errors);
       }
       const articleTemplate = path.resolve(`./src/templates/recipe.jsx`);
-      _.each(result.data.allRecipes.edges, edge => {
+      const edges = result.data.allRecipes.edges || [];
+      _.each(edges, edge => {
         if (edge.node.type === 'recipes') {
           createPage({
             path: edge.node.fields.path,
@@ -56,7 +59,13 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
           });
         }
       });
-
+      paginate({
+        createPage,
+        items: edges,
+        itemsPerPage: 9,
+        pathPrefix: '/recipes',
+        component: path.resolve(`./src/templates/recipes.jsx`)
+      });
       resolve();
     });
   });

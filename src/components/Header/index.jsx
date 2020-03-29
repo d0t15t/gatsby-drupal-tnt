@@ -1,5 +1,6 @@
 import React from 'react';
-import './Header.scss';
+import { Link } from 'gatsby';
+import './styles.scss';
 
 const Header = props => {
   const { siteTitle } = props;
@@ -17,7 +18,9 @@ const Header = props => {
           position: 'relative'
         }}
       >
-        <h1 style={{ color: 'white' }}>{siteTitle}</h1>
+        <Link to="/">
+          <h1 style={{ color: 'white' }}>{siteTitle}</h1>
+        </Link>
       </div>
     </header>
   );

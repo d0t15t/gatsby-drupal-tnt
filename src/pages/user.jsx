@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../layout';
 import LogoutForm from '../components/LogoutForm';
 import UserTeaser from '../components/UserTeaser';
-// import './indexPage.scss';
 import { useStateWithLocalStorage, log } from '../hooks';
 
 const page = () => {

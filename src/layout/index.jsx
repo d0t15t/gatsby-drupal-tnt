@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 // import { StaticQuery, graphql } from 'gatsby';
 // eslint-disable-next-line import/extensions
 import Header from '../components/Header';
-import './layout.scss';
+import './styles.scss';
 import { useStateWithLocalStorage } from '../hooks';
 
 const Layout = props => {
@@ -24,7 +24,7 @@ const Layout = props => {
   `);
 
   useEffect(() => {
-    const url = `${process.env.GATSBY_API_URL}/session/token?_format=json`;
+    const url = `${process.env.GATSBY_API_LOGIN_URL}/session/token?_format=json`;
     const options = {
       method: 'GET',
       headers: {
@@ -48,7 +48,7 @@ const Layout = props => {
         style={{
           margin: '0 auto',
           maxWidth: 960,
-          padding: '0px 1.0875rem 1.45rem',
+          padding: '1.45rem 1.0875rem 1.45rem',
           paddingTop: 0
         }}
       >

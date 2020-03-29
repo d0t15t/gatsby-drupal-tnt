@@ -8,6 +8,10 @@ Opinionated [Gatsby](https://www.gatsbyjs.org/) boilerplate.
 - Fav Icons for various devices.
 - PWA(Progressive Web Application).
 
+Use `.env.development` or `.env.production` etc to load [Gatsby environment variables](https://www.gatsbyjs.org/docs/environment-variables/).
+
+Https: npm run develop -- --https
+
 ## Built With
 
 - [Gatsby V2](https://www.gatsbyjs.org/)

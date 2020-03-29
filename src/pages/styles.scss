@@ -1,0 +1,27 @@
+.indexPage__imgContainer {
+  margin-bottom: 1.45rem;
+  max-width: 28.125rem;
+}
+h1 {
+  color: black;
+}
+.links {
+  margin-bottom: 20px;
+  > * + * {
+    padding-left: 10px;
+  }
+}
+
+.teaser-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > li {
+    width: 33%;
+  }
+
+  & li + li {
+    margin-top: 20px;
+  }
+}

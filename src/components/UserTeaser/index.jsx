@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserTeaser.scss';
+import './styles.scss';
 import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import Moment from 'react-moment';

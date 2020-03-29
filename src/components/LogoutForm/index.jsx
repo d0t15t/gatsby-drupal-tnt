@@ -65,8 +65,8 @@ const LogoutForm = () => {
     const sessionData = JSON.parse(apiSession);
 
     doLogout(
-      // `${process.env.GATSBY_API_URL}/session/token`,
-      `${process.env.GATSBY_API_URL}/user/logout?_format=json&token=${sessionData.logout_token}`,
+      // `${process.env.GATSBY_API_LOGIN_URL}/session/token`,
+      `${process.env.GATSBY_API_LOGIN_URL}/user/logout?_format=json&token=${sessionData.logout_token}`,
       {
         method: 'POST',
         // Accept: 'application/json',

@@ -1,8 +1,6 @@
 import React from 'react';
 import Layout from '../layout';
 import LoginForm from '../components/LoginForm';
-import LogoutForm from '../components/LogoutForm';
-// import './indexPage.scss';
 import { useStateWithLocalStorage } from '../hooks';
 
 const page = () => {

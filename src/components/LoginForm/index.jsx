@@ -1,7 +1,7 @@
 import React, { useGlobal } from 'reactn';
 import { useForm } from 'react-hook-form';
 import fetch from 'node-fetch';
-import './LoginForm.scss';
+import './styles.scss';
 import { useStateWithLocalStorage, now } from '../../hooks';
 
 const LoginForm = () => {
@@ -60,7 +60,7 @@ const LoginForm = () => {
         setMessage(`Error caught: ${error}`);
       }
     };
-    doLogin(`${process.env.GATSBY_API_URL}/user/login?_format=json`, {
+    doLogin(`${process.env.GATSBY_API_LOGIN_URL}/user/login?_format=json`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)

@@ -9,8 +9,8 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Drupal Boilerplate',
-    siteUrl: 'https://github.com/IsaacBigsbyTrogdon/gatsby-drupal-boilerplate',
+    title: 'Gatsby Drupal TnT',
+    siteUrl: 'https://github.com/IsaacBigsbyTrogdon/gatsby-drupal-tnt',
     description:
       "Single-origin coffee pork belly Pitchfork bitters master cleanse food truck semiotics authentic McSweeney's mumblecore."
   },
@@ -26,10 +26,11 @@ module.exports = {
       resolve: 'gatsby-source-drupal',
       options: {
         baseUrl: 'https://live-contentacms.pantheonsite.io/',
-        apiBase: 'api' // optional, defaults to `jsonapi`
-        // links: { # Use to filter which content to import.
-        //   articles: `https://ibt.best/api/articles`,
-        // },
+        apiBase: 'api', // optional, defaults to `jsonapi`
+        // Use to filter which content to import.
+        links: {
+          articles: `https://live-contentacms.pantheonsite.io/recipes/`
+        }
         // basicAuth: {
         //   username: process.env.BASIC_AUTH_USERNAME,
         //   password: process.env.BASIC_AUTH_PASSWORD,
@@ -42,7 +43,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-drupal-boilerplate',
+        name: 'gatsby-drupal-tnt',
         short_name: 'starter',
         start_url: '/',
         background_color: '#663399',

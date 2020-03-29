@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link } from 'gatsby';
-import './Menu.scss';
+import './styles.scss';
 
 const Menu = props => (
   <>
